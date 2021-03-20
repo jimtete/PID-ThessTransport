@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         infoTextView=findViewById(R.id.info);
-        infoTextView.setText("Geia soy Tete<3");
+        infoTextView.setText("Geia soy Nigger");
 
     }
     TextView infoTextView;
