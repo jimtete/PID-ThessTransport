@@ -2,14 +2,24 @@ package com.example.pidthesstransport;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,32 +31,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        login = findViewById(R.id.login_button);
-
-        infoTextView=findViewById(R.id.info);
-        infoTextView.setText("Geia soy Nigger");
-
-        callbackManager = CallbackManager.Factory.create();
-
-        login.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                System.out.println("User id : " + loginResult.getAccessToken().getUserId());
 
 
-            }
 
-            @Override
-            public void onCancel() {
 
-            }
 
-            @Override
-            public void onError(FacebookException error) {
 
-            }
-        });
+
 
     }
-    TextView infoTextView;
+
+
 }
