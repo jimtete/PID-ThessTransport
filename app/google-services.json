@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "57888462722",
+    "project_id": "pid-thesstransport",
+    "storage_bucket": "pid-thesstransport.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57888462722:android:a0f9529e8051899550e19b",
+        "android_client_info": {
+          "package_name": "com.example.pidthesstransport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57888462722-vememfp9jmivmipdr8ndv2t2vmqciknd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFcUnFJ_dEos-_J1-gd_ax3hfr_dCSfAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57888462722-vememfp9jmivmipdr8ndv2t2vmqciknd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
