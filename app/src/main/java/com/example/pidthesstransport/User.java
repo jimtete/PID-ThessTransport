@@ -19,14 +19,29 @@ public class User implements ticketPurchase, PassPurchase {
     private String district;
     private int zipCode;
     private String address;
+    private String email;
 
     private Balance balance;
+
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
 
     public void AddBalance(){
 
     }
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public void ticketPurchase() {
