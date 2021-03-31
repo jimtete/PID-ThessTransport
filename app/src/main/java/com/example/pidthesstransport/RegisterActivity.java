@@ -41,9 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         finishButton.setOnClickListener(v -> {
 
-            emailExists=false;
-            usernameExists=false;
-            if (username.getText().toString().length()<8){
+            exists = false;
+            String un = username.getText().toString();
+            String em = email.getText().toString();
+            if (un.length()<8){
                 Toast.makeText(getApplicationContext(),"Username must have at least 8 characters",Toast.LENGTH_SHORT).
                         show();
                 return ;
@@ -54,25 +55,25 @@ public class RegisterActivity extends AppCompatActivity {
                 return ;
             }
 
-           if (checkUser(username.getText().toString(),email.getText().toString())){
-               return;
-           }
-            else {
-               User temp = new User(username.getText().toString(),
+            if (checkUser("username",un))return;
+            if (checkUser("email",em))return;
+
+               User temp = new User(un,
                        stringHasher.CreateHash(password.getText().toString()),
-                       email.getText().toString());
+                       em);
 
                dataBase.collection("User")
-                       .document(stringHasher.CreateHash(email.getText().toString()))
+                       .document(stringHasher.CreateHash(em))
                        .set(temp)
                        .addOnCompleteListener((task -> {
                            Toast.makeText(getApplicationContext(), "Succesfully registered. please login", Toast.LENGTH_LONG).
                                    show();
                            Intent intent = new Intent(this, MainActivity.class);
+                           startActivity(intent);
                        })).addOnFailureListener(e -> {
                    Toast.makeText(getApplicationContext(), "Couldn't register, please contact the administrator.", Toast.LENGTH_LONG).show();
                });
-           }
+
 
 
 
@@ -82,41 +83,28 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private boolean checkUser(String username, String email) {
+    private boolean checkUser(String key, String keyNote) {
 
-        DocumentReference documentReference = dataBase.collection("User").document(stringHasher.CreateHash(email));
-
-        documentReference.get().addOnCompleteListener(task -> {
-            DocumentSnapshot document = task.getResult();
-            if (document.exists()){
-                Toast.makeText(getApplicationContext(),"There is already an account with the same email",Toast.LENGTH_SHORT).show();
-                emailExists = true;
-            }else{
-                emailExists = false;
-            }
-        });
 
         dataBase.collection("User")
-                .whereEqualTo("username",username)
+                .whereEqualTo(key, keyNote)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),"There is already an account with the same username",Toast.LENGTH_SHORT).show();
-                            usernameExists = true;
+                            Toast.makeText(getApplicationContext(), "There is already an account with the same " + key, Toast.LENGTH_SHORT).show();
+                            exists = true;
                         } else {
-                            usernameExists = false;
+                            exists = false;
                         }
 
 
                     }
                 });
 
-
-        return (emailExists||usernameExists);
+        return exists;
     }
+    public boolean exists;
 
-    boolean emailExists;
-    boolean usernameExists;
 }
