@@ -16,6 +16,7 @@
     <string name="username">username:</string>
     <string name="password">password:</string>
     <string name="email">email:</string>
+    <string name="please_log_in_to_proceed">Please log in to proceed</string>
 
 
 </resources>
