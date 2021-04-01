@@ -3,6 +3,7 @@ package com.example.pidthesstransport;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     public static FirebaseFirestore dataBase;
     EditText username,password,email;
     Button finishButton;
+
+    DocumentReference documentReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         finishButton.setOnClickListener(v -> {
 
-            exists = false;
+
             String un = username.getText().toString();
             String em = email.getText().toString();
             if (un.length()<8){
@@ -55,24 +58,53 @@ public class RegisterActivity extends AppCompatActivity {
                 return ;
             }
 
-            if (checkUser("username",un))return;
-            if (checkUser("email",em))return;
+            User temp = new User(un,
+                    stringHasher.CreateHash(password.getText().toString()),
+                    em);
 
-               User temp = new User(un,
-                       stringHasher.CreateHash(password.getText().toString()),
-                       em);
+            DocumentReference reference = dataBase.collection("User").document(stringHasher.CreateHash(em));
+            reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            exists= true;
+                            Toast.makeText(getApplicationContext(),"There is already an account with the same email", Toast.LENGTH_SHORT).show();
+                        } else {
+                            exists = false;
+                            dataBase.collection("User").
+                                    document(stringHasher.CreateHash(em)).
+                                    set(temp).
+                                    addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getApplicationContext(), "Succesfully registered. please login", Toast.LENGTH_LONG).
+                                                    show();
 
-               dataBase.collection("User")
-                       .document(stringHasher.CreateHash(em))
-                       .set(temp)
-                       .addOnCompleteListener((task -> {
-                           Toast.makeText(getApplicationContext(), "Succesfully registered. please login", Toast.LENGTH_LONG).
-                                   show();
-                           Intent intent = new Intent(this, MainActivity.class);
-                           startActivity(intent);
-                       })).addOnFailureListener(e -> {
-                   Toast.makeText(getApplicationContext(), "Couldn't register, please contact the administrator.", Toast.LENGTH_LONG).show();
-               });
+                                        }
+                                    });
+                        }
+                    } else {
+                        Log.d("Failure", "get failed with ", task.getException());
+                    }
+
+                }
+            });
+
+
+
+//               dataBase.collection("User")
+//                       .document(stringHasher.CreateHash(em))
+//                       .set(temp)
+//                       .addOnCompleteListener((task -> {
+//                           Toast.makeText(getApplicationContext(), "Succesfully registered. please login", Toast.LENGTH_LONG).
+//                                   show();
+//                           Intent intent = new Intent(this, MainActivity.class);
+//                           startActivity(intent);
+//                       })).addOnFailureListener(e -> {
+//                   Toast.makeText(getApplicationContext(), "Couldn't register, please contact the administrator.", Toast.LENGTH_LONG).show();
+//               });
 
 
 
@@ -83,28 +115,20 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private boolean checkUser(String key, String keyNote) {
+    @SuppressLint("ShowToast")
+    private boolean checkUser(String username, String email) {
 
 
-        dataBase.collection("User")
-                .whereEqualTo(key, keyNote)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "There is already an account with the same " + key, Toast.LENGTH_SHORT).show();
-                            exists = true;
-                        } else {
-                            exists = false;
-                        }
+        exists = false;
 
 
-                    }
-                });
+
+
+
 
         return exists;
     }
+
     public boolean exists;
 
 }

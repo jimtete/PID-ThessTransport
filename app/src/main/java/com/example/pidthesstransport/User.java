@@ -1,7 +1,8 @@
 package com.example.pidthesstransport;
 
 
-
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class User implements ticketPurchase, PassPurchase {
 
@@ -11,7 +12,13 @@ public class User implements ticketPurchase, PassPurchase {
 
     private String firstName;
     private String lastName;
+
+    @SerializedName("username")
+    @Expose
     private String username;
+
+    @SerializedName("password")
+    @Expose
     private String password;
     private String phoneNumber;
     private String state;
@@ -19,9 +26,34 @@ public class User implements ticketPurchase, PassPurchase {
     private String district;
     private int zipCode;
     private String address;
+
+    @SerializedName("email")
+    @Expose
     private String email;
 
     private Balance balance;
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", zipCode=" + zipCode +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
+
+    public User(){}
 
     public User(String username, String password, String email) {
         this.username = username;
