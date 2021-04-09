@@ -4,23 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -37,8 +31,8 @@ public class RegisterActivity extends AppCompatActivity {
         dataBase = FirebaseFirestore.getInstance();
 
         username = findViewById(R.id.editText_username);
-        password = findViewById(R.id.editText_password);
-        email = findViewById(R.id.editText_email);
+        password = findViewById(R.id.editText_login_password);
+        email = findViewById(R.id.editText_login_email);
 
         finishButton = findViewById(R.id.finish_register_button);
 
