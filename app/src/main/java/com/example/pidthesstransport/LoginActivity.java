@@ -12,15 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -89,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("USER", stringHasher.CreateHash(userHash));
         startActivity(intent);
+
+
     }
 
 
