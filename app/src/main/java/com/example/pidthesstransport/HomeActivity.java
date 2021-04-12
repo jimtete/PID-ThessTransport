@@ -33,14 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         String hashedEmail = intent.getStringExtra("USER");
         dataBase = FirebaseFirestore.getInstance();
 
-        DocumentReference reference = dataBase.collection("User").document(hashedEmail);
-        reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                SetLogedInUser(documentSnapshot.toObject(User.class));
 
-            }
-        });
 
 
         oasth_button = findViewById(R.id.oasth_button);
@@ -60,9 +53,5 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public void SetLogedInUser(User toObject) {
-        logedInUser=toObject;
-        TextView textView = findViewById(R.id.Text_Services);
-        textView.setText("Hello: \n"+logedInUser.getUsername());
-    }
+
 }
