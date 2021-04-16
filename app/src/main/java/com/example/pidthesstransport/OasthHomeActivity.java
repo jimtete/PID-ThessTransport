@@ -15,9 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class OasthHomeActivity extends AppCompatActivity {
     public static FirebaseFirestore dataBase;
     public User logedInUser;
-    Button purchase_ticket_button;
-    Button purchase_pass_button;
-    Button profile_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +34,12 @@ public class OasthHomeActivity extends AppCompatActivity {
             }
         });
 
-        purchase_ticket_button = findViewById(R.id.purchase_ticket_button);
-        purchase_pass_button = findViewById(R.id.purchase_pass_button);
-        profile_button = findViewById(R.id.profile_button);
+
     }
 
     public void SetLogedInUser(User toObject) {
         logedInUser=toObject;
-        TextView textView = findViewById(R.id.Text_Services);
+        TextView textView = findViewById(R.id.text_services);
         textView.setText("Oasth Home Say Hello : \n"+logedInUser.getUsername());
     }
 
