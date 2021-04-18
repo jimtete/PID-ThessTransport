@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/person"
-        android:title="Αγορά Εισιτηρίου"
-        android:icon="@drawable/buy_ticket_foreground"/>
-    <item
         android:id="@+id/home"
-        android:title="Αγορά Πάσου"
-        android:icon="@drawable/buy_ticket_foreground"/>
+        android:title="Αρχική"
+        android:icon="@drawable/home"/>
     <item
-        android:id="@+id/settings"
+        android:id="@+id/buy_ticket"
+        android:title="Αγορά Εισιτηρίου"
+        android:icon="@drawable/ticket"/>
+    <item
+        android:id="@+id/buy_pass"
+        android:title="Αγορά Πάσου"
+        android:icon="@drawable/pass"/>
+    <item
+        android:id="@+id/balance"
         android:title="Πορτοφόλι"
-        android:icon="@drawable/buy_ticket_foreground"/>
+        android:icon="@drawable/wallet"/>
 </menu>
