@@ -56,11 +56,28 @@ public class User implements ticketPurchase, PassPurchase {
     public User(){}
 
     public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
+        this(null,null,username,password,null,null,null,null,-1,null,email,
+                new Balance(-1.0,-1));
     }
 
+    public User(String firstName, String lastName,
+                String username, String password, String phoneNumber,
+                String state, String city, String district,
+                int zipCode, String address, String email, Balance balance) {
+        this.userID = userID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.state = state;
+        this.city = city;
+        this.district = district;
+        this.zipCode = zipCode;
+        this.address = address;
+        this.email = email;
+        this.balance = balance;
+    }
 
     public void AddBalance(){
 

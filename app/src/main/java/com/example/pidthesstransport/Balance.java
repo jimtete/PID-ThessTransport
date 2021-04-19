@@ -5,6 +5,8 @@ public class Balance {
     private Double balance;
     private int points;
 
+    public Balance(){};
+
     public Balance(Double balance, int points) {
         this.balance = balance;
         this.points = points;
