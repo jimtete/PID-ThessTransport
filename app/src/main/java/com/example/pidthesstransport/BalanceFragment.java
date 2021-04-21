@@ -3,6 +3,8 @@ package com.example.pidthesstransport;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ public class BalanceFragment extends Fragment implements View.OnClickListener {
 
 
     public static FirebaseFirestore dataBase;
+    public static FragmentManager fragmentManager;
     public User logedInUser;
     String hashedEmail;
     EditText walletEditText,pointsEditText;
@@ -42,6 +45,8 @@ public class BalanceFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_balance, container, false);
+
+
 
         hashedEmail = getArguments().getString("email");
 
@@ -128,7 +133,7 @@ public class BalanceFragment extends Fragment implements View.OnClickListener {
     private void SetLogedInUser(User user) {
 
         logedInUser=user;
-
+        bundle.putString("email",stringHasher.CreateHash(logedInUser.getEmail()));
         if (logedInUser.getBalance().getBalance()==-1) SetupUserBalance();
 
         GenerateData();
@@ -160,9 +165,21 @@ public class BalanceFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    Bundle bundle = new Bundle();
     private void DoPayment(double amount){
 
+        Fragment selectedFragment = null;
 
-        System.out.println(amount);
+        bundle.putString("Email",stringHasher.CreateHash(logedInUser.getEmail()));
+        bundle.putString("Amount",amount+"");
+
+        selectedFragment = new PaymentSuccessfulFragment();
+        selectedFragment.setArguments(bundle);
+
+        fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, selectedFragment);
+        transaction.commit();
+
     }
 }
