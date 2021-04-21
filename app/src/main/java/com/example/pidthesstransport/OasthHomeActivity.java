@@ -53,9 +53,8 @@ public class OasthHomeActivity extends AppCompatActivity {
 
 
 
-        Fragment selectedFragment = new HomeFragment();
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-        
+
+
     }
 
     public BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -88,6 +87,8 @@ public class OasthHomeActivity extends AppCompatActivity {
     public void SetLogedInUser(User user) {
         logedInUser=user;
         bundle.putString("email",stringHasher.CreateHash(logedInUser.getEmail()));
+        Fragment selectedFragment = new HomeFragment();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
     }
 
 
