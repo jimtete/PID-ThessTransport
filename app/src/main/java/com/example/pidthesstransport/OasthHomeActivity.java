@@ -53,10 +53,12 @@ public class OasthHomeActivity extends AppCompatActivity {
 
 
 
-
+        Fragment selectedFragment = new HomeFragment();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+        
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    public BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -64,6 +66,7 @@ public class OasthHomeActivity extends AppCompatActivity {
 
                     switch(item.getItemId()){
                         case R.id.home:
+                            selectedFragment = new HomeFragment();
                             break;
                         case R.id.buy_ticket:
                             break;

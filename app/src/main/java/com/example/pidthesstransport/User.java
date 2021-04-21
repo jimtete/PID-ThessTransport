@@ -79,8 +79,8 @@ public class User implements ticketPurchase, PassPurchase {
         this.balance = balance;
     }
 
-    public void AddBalance(){
-
+    public void AddBalance(double amount){
+        balance.setBalance(balance.getBalance()+amount);
     }
 
 
