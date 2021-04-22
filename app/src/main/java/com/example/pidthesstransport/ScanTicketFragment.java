@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import javax.annotation.Nullable;
 public class ScanTicketFragment extends Fragment {
     private CodeScanner mCodeScanner;
     View view;
+    FragmentManager fragmentManager;
 
 
     public ScanTicketFragment() {
@@ -47,7 +50,16 @@ public class ScanTicketFragment extends Fragment {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(activity,result.getText(),Toast.LENGTH_SHORT).show();
+                        String scan = result.getText();
+                        Fragment fragment = new BuyTicketFragment();
+                        bundle.putString("QRSCAN",scan);
+                        fragment.setArguments(bundle);
+
+                        fragmentManager = getFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.fragment_container, fragment);
+                        transaction.commit();
+
                     }
                 });
             }
@@ -63,7 +75,7 @@ public class ScanTicketFragment extends Fragment {
 
         return view;
     }
-
+    Bundle bundle = new Bundle();
     @Override
     public void onResume() {
         super.onResume();
