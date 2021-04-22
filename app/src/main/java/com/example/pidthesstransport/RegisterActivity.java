@@ -22,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText username,password,email;
     Button finishButton;
 
-    DocumentReference documentReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
