@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class OasthHomeActivity extends AppCompatActivity {
     public static FirebaseFirestore dataBase;
+
     public User logedInUser;
     public static FragmentManager fragmentManager;
     BottomNavigationView bottomNavigationView;
@@ -68,6 +69,7 @@ public class OasthHomeActivity extends AppCompatActivity {
                             selectedFragment = new HomeFragment();
                             break;
                         case R.id.buy_ticket:
+                            selectedFragment = new ScanTicketFragment();
                             break;
                         case R.id.buy_pass:
                             break;
