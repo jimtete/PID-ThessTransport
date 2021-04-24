@@ -35,4 +35,12 @@ public class BusLine {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "BusLine{" +
+                "number=" + number +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

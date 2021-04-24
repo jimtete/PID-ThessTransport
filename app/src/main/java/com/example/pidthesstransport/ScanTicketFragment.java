@@ -41,6 +41,8 @@ public class ScanTicketFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_scan_ticket, container, false);
 
+        BypassScan("NZXT-388:52:Ν.Σ.Σταθμός - ΔΙ.ΠΑ.Ε. Αλεξάνδρεια Παν/πολή");
+
         final Activity activity = getActivity();
         CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(activity, scannerView);
@@ -50,16 +52,7 @@ public class ScanTicketFragment extends Fragment {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String scan = result.getText();
-                        Fragment fragment = new BuyTicketFragment();
-                        bundle.putString("QRSCAN",scan);
-                        fragment.setArguments(bundle);
-
-                        fragmentManager = getFragmentManager();
-                        FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.fragment_container, fragment);
-                        transaction.commit();
-
+                        BypassScan(result.getText());
                     }
                 });
             }
@@ -75,6 +68,18 @@ public class ScanTicketFragment extends Fragment {
 
         return view;
     }
+
+    private void BypassScan(String scan) {
+        Fragment fragment = new BuyTicketFragment();
+        bundle.putString("QRSCAN",scan);
+        fragment.setArguments(bundle);
+
+        fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
+    }
+
     Bundle bundle = new Bundle();
     @Override
     public void onResume() {

@@ -35,4 +35,19 @@ public class Bus {
     public void setBusLine(BusLine busLine) {
         this.busLine = busLine;
     }
+
+    public String SerializeBusInfo(){
+        String serializable="";
+        serializable+=this.busReg+":"+this.busLine.getNumber()+":"+this.busLine.getDescription();
+
+        return serializable;
+    }
+
+    @Override
+    public String toString() {
+        return "Bus{" +
+                "busReg='" + busReg + '\'' +
+                ", busLine=" + busLine.toString() +
+                '}';
+    }
 }

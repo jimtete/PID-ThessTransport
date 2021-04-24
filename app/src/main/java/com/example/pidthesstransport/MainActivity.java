@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
         BusLine  N52 = new BusLine(52, "Ν.Σ.Σταθμός - ΔΙ.ΠΑ.Ε. Αλεξάνδρεια Παν/πολή");
 
         Bus B1 = new Bus("NZXT-388",N52);
-
-        dataBase.collection("Buses").
-                document("NZXT-388").
-                set(B1);
+        System.out.println(B1.SerializeBusInfo());
+//        dataBase.collection("Buses").
+//                document("NZXT-388").
+//                set(B1);
 
     }
 
