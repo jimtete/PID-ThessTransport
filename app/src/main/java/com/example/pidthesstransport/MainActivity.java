@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        dataBase = FirebaseFirestore.getInstance();
         PutBusLines();
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -65,9 +65,11 @@ public class MainActivity extends AppCompatActivity {
         BusLine  N64 = new BusLine(64,"ΦΙΛΥΡΟ - Ν.Σ.Σταθμός");
         BusLine  N52 = new BusLine(52, "Ν.Σ.Σταθμός - ΔΙ.ΠΑ.Ε. Αλεξάνδρεια Παν/πολή");
 
-        dataBase.collection("BusLines").
-                document("35").
-                set(N35);
+        Bus B1 = new Bus("NZXT-388",N52);
+
+        dataBase.collection("Buses").
+                document("NZXT-388").
+                set(B1);
 
     }
 
