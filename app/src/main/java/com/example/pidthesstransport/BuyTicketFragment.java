@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 
 public class BuyTicketFragment extends Fragment {
+
+    User logedInUser;
     TextView busLineDescriptionTextView;
-    EditText busLineNumberEditText;
+    EditText busLineNumberEditText,buyTicketWalletEditText;
     String QRScan;
     View view;
 
@@ -26,8 +28,15 @@ public class BuyTicketFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_buy_ticket, container, false);
 
+        OasthHomeActivity activity = (OasthHomeActivity)getActivity();
+        logedInUser = activity.logedInUser;
+
+
         busLineNumberEditText = view.findViewById(R.id.editText_BusLine_Number);
+        buyTicketWalletEditText = view.findViewById(R.id.editText_buy_ticket_wallet);
         busLineDescriptionTextView = view.findViewById(R.id.textView_BusLine_Description);
+
+
 
         QRScan = getArguments().getString("QRSCAN");
 
@@ -42,6 +51,9 @@ public class BuyTicketFragment extends Fragment {
 
         busLineNumberEditText.setEnabled(false);
         busLineNumberEditText.setText(scannedBus.getBusLine().getNumber()+"");
+
+        buyTicketWalletEditText.setEnabled(false);
+        buyTicketWalletEditText.setText(logedInUser.getBalance().getBalance()+"");
 
         busLineDescriptionTextView.setText(scannedBus.getBusLine().getDescription());
 
