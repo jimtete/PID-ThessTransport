@@ -47,7 +47,7 @@ public class Tickets {
         return type;
     }
 
-    public void setType(byte type) {
+    public void setType(int type) {
         this.type = type;
     }
 

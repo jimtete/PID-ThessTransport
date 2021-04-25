@@ -102,8 +102,8 @@ public class User implements ticketPurchase, PassPurchase {
     }
 
     @Override
-    public void ticketPurchase() {
-
+    public void ticketPurchase(double amount) {
+        this.balance.setBalance(this.balance.getBalance()-amount);
     }
 
     @Override

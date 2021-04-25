@@ -3,6 +3,8 @@ package com.example.pidthesstransport;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +50,24 @@ public class BuyTicketFragment extends Fragment implements View.OnClickListener 
         confirmButton.setEnabled(false);
 
         e050.setOnClickListener(this);e060.setOnClickListener(this);e100.setOnClickListener(this);
-        e120.setOnClickListener(this);confirmButton.setOnClickListener(this);
+        e120.setOnClickListener(this);
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                Fragment fragment = new TicketPurchaseConfirmationFragment();
+
+                bundle.putString("Email", stringHasher.CreateHash(logedInUser.getEmail()));
+                bundle.putString("Ticket",selectedBalance);
+                fragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
+                transaction.commit();
+            }
+        });
 
 
 
