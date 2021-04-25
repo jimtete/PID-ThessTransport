@@ -9,7 +9,7 @@ public class User implements ticketPurchase, PassPurchase {
 
     private int userID;
 
-
+    private TicketHistory ticketHistory;
     private String firstName;
     private String lastName;
 
@@ -77,12 +77,21 @@ public class User implements ticketPurchase, PassPurchase {
         this.address = address;
         this.email = email;
         this.balance = balance;
+        this.ticketHistory = new TicketHistory();
     }
 
     public void AddBalance(double amount){
         balance.setBalance(balance.getBalance()+amount);
     }
 
+
+    public TicketHistory getTicketHistory() {
+        return ticketHistory;
+    }
+
+    public void setTicketHistory(TicketHistory ticketHistory) {
+        this.ticketHistory = ticketHistory;
+    }
 
     public String getEmail() {
         return email;

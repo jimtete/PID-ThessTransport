@@ -20,7 +20,7 @@ public class TicketHistory {
         this.evaluatedTicketsArray = evaluatedTicketsArray;
     }
 
-    public Tickets ShowTickets(){
+    public EvaluatedTickets ShowTickets(){
 
         return null;
     }

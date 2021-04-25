@@ -90,6 +90,8 @@ public class PaymentSuccessfulFragment extends Fragment {
 
         logedInUser.AddBalance(amount);
 
+
+
         dataBase.collection("User").document(hashedEmail)
                 .set(logedInUser, SetOptions.merge());
 

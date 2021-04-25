@@ -92,13 +92,84 @@
             app:layout_constraintVertical_bias="0.35000002" />
 
         <Button
-            android:id="@+id/button"
+            android:textSize="16sp"
+            android:id="@+id/button_e050"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="0,50€"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:textSize="16sp"
+            android:id="@+id/button_e060"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0,60€"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:textSize="16sp"
+            android:id="@+id/button_e100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1,00€"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65" />
+
+        <Button
+            android:textSize="16sp"
+            android:id="@+id/button_e120"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1,20€"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.80"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65" />
+
+        <TextView
+            android:textSize="16sp"
+            android:textAlignment="textStart"
+            android:id="@+id/textView_chosen_ticket"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Δεν έχετε επιλέξει κανένα εισητήριο"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2
+"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8" />
+
+        <Button
+            android:id="@+id/button_confirm_buy_ticket"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Επιβεβαίωση αγοράς"
+
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.81" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
