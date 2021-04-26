@@ -4,11 +4,7 @@ import java.util.ArrayList;
 
 public class TicketHistory {
 
-    private ArrayList<EvaluatedTickets> evaluatedTicketsArray;
-
-    public TicketHistory(ArrayList<EvaluatedTickets> evaluatedTicketsArray) {
-        this.evaluatedTicketsArray = new ArrayList<EvaluatedTickets>();
-    }
+    private ArrayList<EvaluatedTickets> evaluatedTicketsArray= new ArrayList<EvaluatedTickets>();
 
     public TicketHistory(){}
 
@@ -18,6 +14,12 @@ public class TicketHistory {
 
     public void setEvaluatedTicketsArray(ArrayList<EvaluatedTickets> evaluatedTicketsArray) {
         this.evaluatedTicketsArray = evaluatedTicketsArray;
+    }
+
+    public void AddEvaluation(EvaluatedTickets ET){
+        if (this.evaluatedTicketsArray==null)evaluatedTicketsArray= new ArrayList<EvaluatedTickets>();
+
+        this.evaluatedTicketsArray.add(ET);
     }
 
     public EvaluatedTickets ShowTickets(){

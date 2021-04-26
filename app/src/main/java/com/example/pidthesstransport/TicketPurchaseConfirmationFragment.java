@@ -16,6 +16,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
+
 
 public class TicketPurchaseConfirmationFragment extends Fragment {
 
@@ -25,6 +27,7 @@ public class TicketPurchaseConfirmationFragment extends Fragment {
     public Tickets selectedTicket;
     String hashedEmail;
     String amount;
+    String bus;
 
 
     View view;
@@ -44,6 +47,7 @@ public class TicketPurchaseConfirmationFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_ticket_purchase_confirmation, container, false);
         hashedEmail = getArguments().getString("Email");
         amount = getArguments().getString("Ticket");
+        bus = getArguments().getString("Line");
 
         DocumentReference reference = dataBase.collection("User").document(hashedEmail);
         reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -79,14 +83,39 @@ public class TicketPurchaseConfirmationFragment extends Fragment {
             return;
         }
 
-        logedInUser.ticketPurchase(sendAmount);
-        dataBase.collection("User").document(hashedEmail)
-                .set(logedInUser, SetOptions.merge());
+        DocumentReference reference = dataBase.collection("Buses").document(bus);
+        reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-        OasthHomeActivity activity = (OasthHomeActivity)getActivity();
-        activity.logedInUser = logedInUser;
 
-        ErrorOnPurchase(-2);
+                Bus selectedBus = documentSnapshot.toObject(Bus.class);
+                EvaluatedTickets tempEvaluatedTickets = new EvaluatedTickets(ticket,selectedBus);
+
+
+
+                TicketHistory tempTicketHistory = logedInUser.getTicketHistory();
+
+                tempTicketHistory.AddEvaluation(tempEvaluatedTickets);
+
+
+
+                logedInUser.ticketPurchase(sendAmount);
+
+                logedInUser.setTicketHistory(tempTicketHistory);
+
+
+                dataBase.collection("User").document(hashedEmail)
+                        .set(logedInUser, SetOptions.merge());
+
+                OasthHomeActivity activity = (OasthHomeActivity)getActivity();
+                activity.logedInUser = logedInUser;
+
+                ErrorOnPurchase(-2);
+            }
+        });
+
+
 
 
     }

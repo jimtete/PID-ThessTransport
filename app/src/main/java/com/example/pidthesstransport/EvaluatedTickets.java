@@ -39,4 +39,13 @@ public class EvaluatedTickets {
     public void setBus(Bus bus) {
         this.bus = bus;
     }
+
+    @Override
+    public String toString() {
+        return "EvaluatedTickets{" +
+                "validationTime=" + validationTime +
+                ", ticket=" + ticket +
+                ", bus=" + bus +
+                '}';
+    }
 }

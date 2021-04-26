@@ -53,6 +53,9 @@ public class PaymentSuccessfulFragment extends Fragment {
         newBalanceEditText.setInputType(InputType.TYPE_NULL);
 
 
+
+
+
         dataBase = FirebaseFirestore.getInstance();
         DocumentReference reference = dataBase.collection("User").document(hashedEmail);
         reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -96,5 +99,8 @@ public class PaymentSuccessfulFragment extends Fragment {
                 .set(logedInUser, SetOptions.merge());
 
         newBalanceEditText.setText(logedInUser.getBalance().getBalance()+"€");
+
+        OasthHomeActivity activity = (OasthHomeActivity)getActivity();
+        activity.logedInUser = logedInUser;
     }
 }

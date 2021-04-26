@@ -60,6 +60,7 @@ public class BuyTicketFragment extends Fragment implements View.OnClickListener 
 
                 bundle.putString("Email", stringHasher.CreateHash(logedInUser.getEmail()));
                 bundle.putString("Ticket",selectedBalance);
+                bundle.putString("Line",scannedBus.getBusReg());
                 fragment.setArguments(bundle);
 
                 FragmentManager fragmentManager = getFragmentManager();
