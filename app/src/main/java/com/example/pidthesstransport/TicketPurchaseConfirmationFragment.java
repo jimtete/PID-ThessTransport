@@ -74,10 +74,35 @@ public class TicketPurchaseConfirmationFragment extends Fragment {
 
         double sendAmount = ticket.CalculateCost();
 
-        logedInUser.ticketPurchase(sendAmount);
+        if (logedInUser.getBalance().getBalance()<sendAmount){
+            ErrorOnPurchase(-1);
+            return;
+        }
 
+        logedInUser.ticketPurchase(sendAmount);
         dataBase.collection("User").document(hashedEmail)
                 .set(logedInUser, SetOptions.merge());
+
+        OasthHomeActivity activity = (OasthHomeActivity)getActivity();
+        activity.logedInUser = logedInUser;
+
+        ErrorOnPurchase(-2);
+
+
+    }
+
+    private void ErrorOnPurchase(int i) {
+
+
+        TextView error = view.findViewById(R.id.textView_confirmation);
+        switch (i){
+            case -1:
+                error.setText("Δεν έχετε αρκετό υπόλοιπο για να πραγματοποιηθεί η αγορά");
+                break;
+            case -2:
+                error.setText("Το εισητήριο αγοράσθηκε με επιτυχία!");
+                break;
+        }
 
     }
 

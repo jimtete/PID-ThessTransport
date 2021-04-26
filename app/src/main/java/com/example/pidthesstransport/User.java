@@ -103,7 +103,9 @@ public class User implements ticketPurchase, PassPurchase {
 
     @Override
     public void ticketPurchase(double amount) {
-        this.balance.setBalance(this.balance.getBalance()-amount);
+
+
+        this.balance.setBalance(Math.round((this.balance.getBalance()-amount)*100.0)/100.0);
     }
 
     @Override
