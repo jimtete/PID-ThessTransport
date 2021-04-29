@@ -69,7 +69,7 @@ public class PaymentSuccessfulFragment extends Fragment {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OasthHomeActivity temp = (OasthHomeActivity)getActivity();
+
                 fragmentManager = getFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.fragment_container, new HomeFragment());

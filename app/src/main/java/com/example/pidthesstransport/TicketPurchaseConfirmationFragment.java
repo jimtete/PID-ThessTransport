@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +31,8 @@ public class TicketPurchaseConfirmationFragment extends Fragment {
     String amount;
     String bus;
 
+    ImageButton imageButton;
+
 
     View view;
 
@@ -49,11 +53,25 @@ public class TicketPurchaseConfirmationFragment extends Fragment {
         amount = getArguments().getString("Ticket");
         bus = getArguments().getString("Line");
 
+
+
         DocumentReference reference = dataBase.collection("User").document(hashedEmail);
         reference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 SetLogedInUser(documentSnapshot.toObject(User.class));
+            }
+        });
+
+        imageButton = view.findViewById(R.id.imageButton_continue);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragment_container, new HomeFragment());
+                transaction.commit();
             }
         });
 
@@ -129,7 +147,7 @@ public class TicketPurchaseConfirmationFragment extends Fragment {
                 error.setText("Δεν έχετε αρκετό υπόλοιπο για να πραγματοποιηθεί η αγορά");
                 break;
             case -2:
-                error.setText("Το εισητήριο αγοράσθηκε με επιτυχία!");
+                error.setText("Το εισιτήριο αγοράσθηκε με επιτυχία!");
                 break;
         }
 
