@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -35,6 +37,7 @@ public class BuyPassFragment extends Fragment {
     RadioGroup durationRadioGroup;
     TextView welcomeTextView,calculatedCostTextView;
     CheckBox discountCheckBox;
+    Button confirmPassPurchaseButton;
 
     public BuyPassFragment() {
         // Required empty public constructor
@@ -104,6 +107,24 @@ public class BuyPassFragment extends Fragment {
         calculatedCostTextView = view.findViewById(R.id.textView_calculated_cost);
         CalculateCostForTV();
 
+        confirmPassPurchaseButton = view.findViewById(R.id.button_confirm_buy_pass);
+        confirmPassPurchaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                Fragment fragment = new PassPurchaseConfirmationFragment();
+
+                bundle.putString("email",hashedEmail);
+                bundle.putString("passDocument",passDoc1+passDoc2);
+                fragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragment_container, fragment);
+                transaction.commit();
+            }
+        });
+
 
         dataBase = FirebaseFirestore.getInstance();
         DocumentReference reference = dataBase.collection("User").document(hashedEmail);
@@ -129,6 +150,7 @@ public class BuyPassFragment extends Fragment {
 
     private void SetLogedInUser(User user) {
         logedInUser = user;
+
         buyPassWalletEditText.setText("Πορτοφόλι : "+logedInUser.getBalance().getBalance()+"€");
         GeneratedTextViews();
 
