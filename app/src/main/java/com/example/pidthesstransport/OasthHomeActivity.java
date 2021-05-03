@@ -72,6 +72,7 @@ public class OasthHomeActivity extends AppCompatActivity {
                             selectedFragment = new ScanTicketFragment();
                             break;
                         case R.id.buy_pass:
+                            selectedFragment = new BuyPassFragment();
                             break;
                         case R.id.balance:
                             selectedFragment = new BalanceFragment();
