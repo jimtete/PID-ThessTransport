@@ -35,7 +35,7 @@
             app:layout_constraintHorizontal_bias=".10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".25" />
+            app:layout_constraintVertical_bias=".28" />
 
         <TextView
             android:id="@+id/textView12"
@@ -48,7 +48,85 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/checkBox_discount"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".25" />
+            app:layout_constraintVertical_bias=".28" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup_duration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal"
+            android:divider="@color/white"
+            android:showDividers="middle"
+            >
+
+            <RadioButton
+                android:id="@+id/radioButton_30D"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="30 ημερών"
+                android:layout_margin="10dp"
+                />
+            <RadioButton
+                android:id="@+id/radioButton_90D"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="90 ημερών"
+                android:layout_margin="10dp"
+                />
+
+            <RadioButton
+                android:id="@+id/radioButton_180D"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="180 ημερών"
+                android:layout_margin="10dp"
+                />
+        </RadioGroup>
+
+        <Button
+
+
+            android:id="@+id/button_confirm_buy_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ΑΓΟΡΑ ΠΑΣΟΥ"
+            android:textSize="20dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup_duration"
+            app:layout_constraintVertical_bias="0.66
+" />
+
+        <EditText
+            android:id="@+id/editText_current_balance_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.61" />
+
+        <TextView
+            android:id="@+id/textView_calculated_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/button_confirm_buy_pass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_current_balance_pass" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
