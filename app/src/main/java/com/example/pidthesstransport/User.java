@@ -9,6 +9,7 @@ public class User implements ticketPurchase, PassPurchase {
 
     private int userID;
 
+    private PassHistory passHistory;
     private TicketHistory ticketHistory;
     private String firstName;
     private String lastName;
@@ -78,6 +79,7 @@ public class User implements ticketPurchase, PassPurchase {
         this.email = email;
         this.balance = balance;
         this.ticketHistory = new TicketHistory();
+        this.passHistory = new PassHistory();
     }
 
     public void AddBalance(double amount){
@@ -109,10 +111,18 @@ public class User implements ticketPurchase, PassPurchase {
     }
 
     @Override
-    public void BuyPass() {
+    public void BuyPass(double amount) {
 
+        this.balance.setBalance(Math.round((this.balance.getBalance()-amount)*100.0)/100.0);
     }
 
+    public PassHistory getPassHistory() {
+        return passHistory;
+    }
+
+    public void setPassHistory(PassHistory passHistory) {
+        this.passHistory = passHistory;
+    }
 
     public int getUserID() {
         return userID;

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dataBase = FirebaseFirestore.getInstance();
-        PutBusLines();
+        //PutBusLines();
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_DENIED) ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, PERMISSION_REQUEST_CODE);
@@ -70,10 +70,13 @@ public class MainActivity extends AppCompatActivity {
         double base=1.20;
         Tickets temp = new Tickets(1,90,base,true,"μειωμένο εισητίριο 1 διαδρομής");
 
-        System.out.println(B1.SerializeBusInfo());
-        dataBase.collection("Tickets").
-                document("0,50€").
-                set(temp);
+        Pass pTemp = new Pass(0,30.0,true,"Μειωμένο πάσο 30 ημερών");
+
+
+
+        dataBase.collection("Pass").
+                document("30DOFF").
+                set(pTemp);
 
     }
 

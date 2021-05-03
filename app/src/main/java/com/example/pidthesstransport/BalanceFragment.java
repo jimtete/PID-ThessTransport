@@ -158,6 +158,7 @@ public class BalanceFragment extends Fragment implements View.OnClickListener {
     private void SetupUserBalance() {
 
         logedInUser.setBalance(new Balance(0.0,0));
+        logedInUser.setPassHistory(new PassHistory());
 
         dataBase.collection("User").document(hashedEmail)
                 .set(logedInUser, SetOptions.merge());

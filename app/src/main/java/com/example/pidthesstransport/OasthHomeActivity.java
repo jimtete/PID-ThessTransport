@@ -89,6 +89,9 @@ public class OasthHomeActivity extends AppCompatActivity {
     Bundle bundle = new Bundle();
     public void SetLogedInUser(User user) {
         logedInUser=user;
+
+
+
         bundle.putString("email",stringHasher.CreateHash(logedInUser.getEmail()));
         Fragment selectedFragment = new HomeFragment();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
