@@ -19,7 +19,7 @@ public class PassHistory {
 
     public void AddPurchase(PassPurchases PP){
 
-        if (this.purchasedPassesArray==null)purchasedPassesArray = new ArrayList<>();
+        if (this.purchasedPassesArray==null)purchasedPassesArray = new ArrayList<PassPurchases>();
 
         this.purchasedPassesArray.add(PP);
 

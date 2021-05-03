@@ -117,6 +117,7 @@ public class User implements ticketPurchase, PassPurchase {
     }
 
     public PassHistory getPassHistory() {
+
         return passHistory;
     }
 

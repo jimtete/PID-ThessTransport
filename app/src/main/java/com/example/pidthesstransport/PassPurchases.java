@@ -10,7 +10,7 @@ public class PassPurchases {
 
     private Pass pass;
 
-    public PassPurchases(String passIdentificator, Date timePurchased, Pass pass) {
+    public PassPurchases(String passIdentificator, Pass pass) {
         this.passIdentificator = passIdentificator;
         this.timePurchased = new Date();
         this.pass = pass;
